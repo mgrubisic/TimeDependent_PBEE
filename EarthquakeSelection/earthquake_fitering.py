@@ -16,9 +16,19 @@ import csv
 # Data base is taken fron NGA West 2 database from  PEER
 with open('MS-AS_PEER_Website.csv',newline='') as peer:
 
-    peerreader = csv.reader(peer)
-    fields = peerreader.next()
+    PeerReader = csv.reader(peer)
+    
+    EqNames = []
+    Mws = []
+    for row in PeerReader:
+        EqName = row[3]
+        Mw = row[10]
 
-    print('Field names are:' + ', '.join(field for field in fields))     
+        EqNames.append(EqName)
+        Mws.append(Mw)
+
+    print(EqNames)
+    print(Mws) 
+    
 
 # LOAD DATASET
