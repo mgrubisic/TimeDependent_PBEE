@@ -20,6 +20,10 @@ with open('MS-AS_PEER_Website.csv',newline='') as peer:
     
     EqNames = []
     Mws = []
+    Rrups=[]
+    PGAs=[]
+    PGVs=[]
+    Vs30s=[]
     for row in PeerReader:
         EqName = row[3]
         Mw = row[10]
@@ -27,8 +31,8 @@ with open('MS-AS_PEER_Website.csv',newline='') as peer:
         EqNames.append(EqName)
         Mws.append(Mw)
 
-    print(EqNames)
-    print(Mws) 
+    #print(EqNames)
+    #print(Mws) 
     
 
 # LOAD DATASET
