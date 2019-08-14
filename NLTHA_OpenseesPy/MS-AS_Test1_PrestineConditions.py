@@ -4,19 +4,9 @@ Created on Mon Apr 22 15:12:06 2019
 
 @author: pchi893
 """
-# Converted to openseespy by: Pavan Chigullapally       
-#                         University of Auckland  
-#                         Email: pchi893@aucklanduni.ac.nz 
-# Example 2c. 2D cantilever column, dynamic eq ground motion
-# EQ ground motion with gravity- uniform excitation of structure
-#In this example, the Uniaxial Section of Example 2b is replaced by a fiber section. Inelastic uniaxial materials are used in this example, 
-#which are assigned to each fiber, or patch of fibers, in the section.
-#In this example the axial and flexural behavior are coupled, a characteristic of the fiber section.
-#The nonlinear/inelastic behavior of a fiber section is defined by the stress-strain response of the uniaxial materials used to define it.
 
-#To run EQ ground-motion analysis (BM68elc.acc needs to be downloaded into the same directory)
-#the problem description can be found here: http://opensees.berkeley.edu/wiki/index.php/Examples_Manual(example: 2c)
-# --------------------------------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
 #	OpenSees (Tcl) code by:	Silvia Mazzoni & Frank McKenna, 2006
 
 #
@@ -33,7 +23,9 @@ Created on Mon Apr 22 15:12:06 2019
 #  =1=      _|_  -------->X
 #
 
-# SET UP ----------------------------------------------------------------------------
+#------------------------------------------------------------------------------ 
+#|                      IMPORTS
+#------------------------------------------------------------------------------
 from openseespy.opensees import *
 #import the os module
 import os
@@ -41,10 +33,10 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 wipe()
-#########################################################################################################################################################################
+# ----------------------------------------------------------------------------
 #to create a directory at specified path with name "Data"
 
-os.chdir('C:\\Opensees Python\\OpenseesPy examples')
+#os.chdir('C:\\Opensees Python\\OpenseesPy examples')
 
 #this will create the directory with name 'Data' and will update it when we rerun the analysis, otherwise we have to keep deleting the old 'Data' Folder
 dir = "C:\\Opensees Python\\OpenseesPy examples\\Data-2c"
@@ -55,9 +47,7 @@ if not os.path.exists(dir):
 #detect the current working directory
 #path1 = os.getcwd()
 #print(path1)
-#########################################################################################################################################################################
 
-#########################################################################################################################################################################
 
 from LibUnitsMUS import *
 import ManderCC
@@ -209,8 +199,8 @@ loadConst('-time', 0.0) #maintain constant gravity loads and reset time to zero
  
 #applying Dynamic Ground motion analysis
 GMdirection = 1
-GMfile = 'MS_AS_NorthRidge.g3'
-GMfact = 1.0
+GMfile = 'RSN1231_CHICHI_CHY080-E.AT2RSN95_MANAGUA_A-ESO090.AT2.g3'
+GMfact = 980.0
 
 
 
@@ -247,7 +237,7 @@ integrator('Newmark', NewmarkGamma, NewmarkBeta)
 analysis('Transient')
 
 DtAnalysis = dt
-TmaxAnalysis = 78.875
+TmaxAnalysis = 63.33
 
 Nsteps =  int(TmaxAnalysis/ DtAnalysis)
 
@@ -292,7 +282,7 @@ X=[float(i) for i in x]
 Y=[float(i) for i in y]
 
     
-plt.plot(X[0:15663],Y)
+plt.plot(X[0:12600],Y[0:12600])
 plt.title('Example of Force Displacement Response for NorthRidge MS-AS Sequence')
 plt.xlabel('Diplacement (in)')
 plt.ylabel('BaseShear (kip)')
