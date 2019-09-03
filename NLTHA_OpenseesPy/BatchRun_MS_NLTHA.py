@@ -17,6 +17,16 @@ Created on Wed Aug 14 16:32:05 2019
 #|
 #------------------------------------------------------------------------------
 
+
+# ----------------------------------------------------------------------------
+#|                             IMPORTS
+# ----------------------------------------------------------------------------
+
+#import the os module
+import os
+import math
+import numpy as np
+
 # ----------------------------------------------------------------------------
 #| VARIABLES THAT CHANGE WITH TIME
 # ----------------------------------------------------------------------------
@@ -39,6 +49,7 @@ dbi= 0.75
 dti= 0.375  
 MS_path=r'C:\Users\vacalder\Documents\TimeDependent_PBEE\EarthquakeSelection\MainShock_Test'
 MSListing = os.listdir(MS_path)
+rootdir=r'C:\Users\vacalder\Documents\TimeDependent_PBEE\NLTHA_OpenseesPy'
 
 for GM in MSListing:
     for cover in icover:
@@ -46,3 +57,22 @@ for GM in MSListing:
             for Time in iTime:
                 for wcr in iwcr:
                     #set Functions for Fiber Model and NLTHA
+                    dblc  = dbi*25.4-(1.0508*(1-wcr)**1.64)*(Time-Tcorr)**0.71
+                    Ablc  = 0.25*math.pi*dblc**2
+                    Ablcm = Ablc/(1000.**2)
+                    Mcorr = Ablcm*7800.
+                    CLl   = (1-Ablcm*7800./2.223179)*100
+                    dbtc  = dti*25.4-(1.0508*(1-wcr)**1.64)*(Time-Tcorr)**0.71
+                    Atc  = 0.25*math.pi*dbtc**2
+                    Atcm = Atc/(1000.**2)
+                    CLt   = (0.55795-Atcm*7800./0.55795)*100
+                    datadir=rootdir+"\\"+"data"+"\\"+str(cover)+"\\"+str(wcr)+"\\"+str(Time)
+                    
+                    if not os.path.exists(datadir):
+                        os.makedirs(datadir)
+                    
+                    import Build_RC_Column.py
+                    
+                    
+                    
+                    
