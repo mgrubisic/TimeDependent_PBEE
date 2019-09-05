@@ -5,18 +5,15 @@ Created on Tue Jun 25 10:54:51 2019
 @author: vacalder
 """
 
-# PROGRAM TO GENERATE MAINSHOCK - AFTERSHOCK RECORD SEQUENCES
+# PROGRAM TO GENERATE MAINSHOCK - MAINSHOCK RECORD SEQUENCES
 #   Victor A Calderon
 #   PhD Student/ Research Assistant
 #   NC STATE UNIVERSITY 
 #   2019 (c)
-import math  as math
+
 import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 import os
-import fnmatch
-import shutil
+
 
 
 # Mainshock and Aftershock Paths
