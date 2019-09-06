@@ -55,9 +55,10 @@ for Time in iTime:
     
     plt.figure(1)    
     plt.plot(X,Y)
-    plt.title('Example of Force Displacement Response for ChiChi EQ w/c=0.4')
-    plt.xlabel('Diplacement (in)')
-    plt.ylabel('BaseShear (kip)')
+    plt.title('Example of Force Displacement Response for ChiChi EQ w/c=0.4', fontsize=32)
+    plt.xlabel('Diplacement (in)', fontsize=24)
+    plt.ylabel('BaseShear (kip)', fontsize=24)
+    plt.tick_params(direction='out',axis='both',labelsize=20)
     plt.grid()
     plt.show()
                     

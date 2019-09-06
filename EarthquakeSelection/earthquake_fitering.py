@@ -25,6 +25,7 @@ Created on Mon Jul 29 14:52:27 2019
 import math  as math
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.axes as ax
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -64,8 +65,12 @@ Peer_Filtered=PeerDB[all_filters]
 
 # Plotting Data Points
 
-Peer_Filtered.plot(kind='scatter',x='joyner_booredist_km',y='earthquake_magnitude')
-#plt.show
+Peer_Filtered.plot.scatter(x='joyner_booredist_km',y='earthquake_magnitude',s=20,c='earthquake_magnitude',colormap='viridis')
+plt.title('Main Shock and Aftershock Selection',fontsize=32)
+plt.xlabel('Rrup (km)',fontsize=24)
+plt.ylabel('Magnitude (Mw)',fontsize=24)
+plt.tick_params(direction='out',axis='both',labelsize=20)
+plt.show
 
 # Selecting Mainshocks and generate string to download RSN
 
@@ -79,6 +84,13 @@ for i, row in Main_Shocks.iterrows():
     dwnstr=','+str(row['record_sequence_number'])+dwnstr
     
 MSstr=dwnstr[1:]
+
+Main_Shocks.plot.scatter(x='joyner_booredist_km',y='earthquake_magnitude',s=20,c='earthquake_magnitude',colormap='viridis')
+plt.title('Main Shock Selection',fontsize=32)
+plt.xlabel('Rrup (km)',fontsize=24)
+plt.ylabel('Magnitude (Mw)',fontsize=24)
+plt.tick_params(direction='out',axis='both',labelsize=20)
+plt.show
 
 # Copying already Downloaded files in Kowalsky Group Folder:
 
